@@ -13,9 +13,9 @@ class CropFilter implements FilterInterface
 
     private $h;
 
-    private $x;
+    private $x=0;
 
-    private $y;
+    private $y=0;
 
     private $g;
 
@@ -47,18 +47,13 @@ class CropFilter implements FilterInterface
             $this->y += $oneThirdHeight*$grid[$this->g][1];
         }
 
-        if($this->x > $width || $this->y > $height){
+        if($this->x > $width || $this->y > $height) {
             $image = Image::canvas(0, 0);
             return $image;
         }
 
-        $this->w = min($width, $this->w);
-        $this->h = min($height, $this->h);
-
-        $this->x = min($width-$this->w, $this->x);
-        $this->y = min($height-$this->h, $this->y);
-
-
+        $this->w = min($width-$this->x, $this->w);
+        $this->h = min($height-$this->y, $this->h);
 
         $image->crop($this->w, $this->h, $this->x, $this->y);
         return $image;
