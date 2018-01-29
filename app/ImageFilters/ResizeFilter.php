@@ -19,7 +19,7 @@ class ResizeFilter implements FilterInterface
 
     private $color = 'FFFFFF';
 
-    private $p=100;
+    private $p;
 
     public function __construct($params = [])
     {
