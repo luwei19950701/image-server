@@ -7,6 +7,7 @@ use Intervention\Image\Image;
 
 class CropFilter implements FilterInterface
 {
+
     use HandleParams;
 
     private $w;

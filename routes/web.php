@@ -16,5 +16,6 @@ Route::get('/', function () {
 });
 
 Route::any('test-upload', 'TestController@upload')->name('test-upload');
+Route::get('test-draw', 'TestController@draw');
 
 Route::get('/{path}', 'StorageController@images')->where(['path' => 'storage\/images\/.*?']);

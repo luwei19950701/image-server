@@ -1,5 +1,6 @@
 <?php
 namespace App\ImageFilters;
+use Intervention\Image\Image;
 
 trait HandleParams
 {
@@ -9,6 +10,16 @@ trait HandleParams
             $paramToArray = explode('_', $param);
             $attr = $paramToArray[0];
             $this->$attr = $paramToArray[1];
+        }
+    }
+
+    public function throwError($message)
+    {
+        if(config('app.debug')){
+            throw new \Exception($message);
+        } else {
+            $image = Image::canvas(0, 0);
+            return $image;
         }
     }
 }

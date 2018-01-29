@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="{{route('test-upload')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('upload')}}" method="post" enctype="multipart/form-data">
     {{csrf_field()}}
     <input type="file" name="file">
     <button type="submit">上传</button>
