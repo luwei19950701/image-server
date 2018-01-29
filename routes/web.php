@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::any('test-upload', 'TestController@upload')->name('test-upload');
-Route::get('test-draw', 'TestController@draw');
+Route::any('example', function () {
+    return view('example');
+});
 
 Route::get('/{path}', 'StorageController@images')->where(['path' => 'storage\/images\/.*?']);
 Route::get('holder/{width}/{height}/{color?}', 'StorageController@holder');

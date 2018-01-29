@@ -15,6 +15,9 @@ return [
     |
     */
 
-    'driver' => 'imagick'
-
+    'driver' => 'imagick',
+    /**
+     * 缓存时间，单位分钟
+     */
+    'leftTime' => 30*24*60,
 ];

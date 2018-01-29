@@ -58,12 +58,8 @@ class ResizeFilter implements FilterInterface
                     $image->resize($this->w, null, $ratioLimitFunction);
                 }
                 break;
-            case 'lfit':
-                if($deviation){
-                    $image->resize($this->w, null, $ratioLimitFunction);
-                } else {
-                    $image->resize(null, $this->h, $ratioLimitFunction);
-                }
+            case 'fixed':
+                $image->resize($this->w, $this->h, $limitFunction);
                 break;
             case 'fill':
                 if($deviation){
@@ -81,8 +77,13 @@ class ResizeFilter implements FilterInterface
                 }
                 $image->resizeCanvas($this->w, $this->h, 'center', false, $this->color);
                 break;
-            default: // 等同于fixed
-                $image->resize($this->w, $this->h, $limitFunction);
+            default: // 等同于lfit
+                if($deviation){
+                    $image->resize($this->w, null, $ratioLimitFunction);
+                } else {
+                    $image->resize(null, $this->h, $ratioLimitFunction);
+                }
+
         }
 
         return $image;
