@@ -46,4 +46,12 @@ class StorageController extends Controller
         $path = '/storage'.$path;
         return response()->json(compact('path'));
     }
+
+    public function holder($width, $height, $color='#f3e1b1')
+    {
+        $leftTime = 30*24*60;
+        return \Cache::remember('holder:'.$width.'_'.$height.'_'.$color, $leftTime, function() use ($width, $height, $color) {
+            return \Image::canvas($width, $height, $color)->response('png');
+        });
+    }
 }
