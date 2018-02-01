@@ -7,7 +7,7 @@ cd image-server
 composer install
 ```
 ### nginx 配置
-```nginx
+````nginx
 server {
     listen 8001;
     index index.html index.htm index.php;
@@ -35,8 +35,15 @@ server {
         fastcgi_param SCRIPT_NAME $real_script_name;
     }
 }
-```
-
+````
+重点就是这里 
+````nginx
+    location ^~ /storage/ {
+        if ( $query_string ~* x-oss-process.* ){
+            rewrite ^/.*$ /index.php;
+        }
+    }
+````
 ### 配置
 如果环境中安装了ImageMagick, 并且php-imagick扩展也开了，就不需要改配置了.  
 否则condig/image.php 修改为如下配置:
