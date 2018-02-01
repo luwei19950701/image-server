@@ -17,9 +17,9 @@ class StorageController extends Controller
             return $this->getImage($xOssProcess, $path);
         }
         $leftTime = config('image.leftTime');
-//        return \Cache::remember($path.':'.$xOssProcess, $leftTime, function() use ($xOssProcess, $path) {
+        return \Cache::remember($path.':'.$xOssProcess, $leftTime, function() use ($xOssProcess, $path) {
             return $this->getImage($xOssProcess, $path);
-//        });
+        });
 
     }
 
